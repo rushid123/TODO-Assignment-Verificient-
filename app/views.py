@@ -4,6 +4,24 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from app.forms import TODOForm
 from app.models import TODO
 from django.contrib.auth.decorators import login_required
+import time
+from plyer import notification
+from threading import *
+# Create your views here.
+
+
+def thread():
+    while True:
+        notification.notify(
+            title = "**Please kindly open your TODO app!!!",
+            message ="TIC-TIC, Important work calling...",
+            timeout= 10
+            )
+        time.sleep(60*30)
+
+t=Thread(target=thread)
+t.start()
+
 
 @login_required(login_url='login')
 def home(request):
